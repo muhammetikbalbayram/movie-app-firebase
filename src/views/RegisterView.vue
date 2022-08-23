@@ -1,4 +1,6 @@
-<template></template>
+<template>
+  <div>ASD</div>
+</template>
 
 <script>
 export default {

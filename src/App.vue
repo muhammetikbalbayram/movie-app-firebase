@@ -1,7 +1,9 @@
 <template>
-  <header-component></header-component>
-  <router-view />
-  <footer-component></footer-component>
+  <div class="bg-purple-100">
+    <header-component></header-component>
+    <router-view />
+    <footer-component></footer-component>
+  </div>
 </template>
 <script>
 import HeaderComponent from "@/components/HeaderComponent";
