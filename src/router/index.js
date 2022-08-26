@@ -4,6 +4,7 @@ import ForgotPasswordView from "@/views/ForgotPasswordView";
 import LoginView from "@/views/LoginView";
 import FilmDetailsView from "@/views/FilmDetailsView";
 import CastDetail from "@/views/CastDetail";
+import SearchView from "@/views/SearchView";
 
 const routes = [
   {
@@ -12,9 +13,9 @@ const routes = [
     component: HomeView,
   },
   {
-    path: "/adventure",
-    name: "adventure",
-    component: HomeView,
+    path: "/search",
+    name: "search",
+    component: SearchView,
   },
   {
     path: "/forgotpassword",

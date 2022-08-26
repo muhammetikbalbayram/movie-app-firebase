@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="flex bg-gray-500 my-5">
+    <div class="flex bg-purple-300 my-5">
       <div class="m-5">
         <img
           class="img rounded-md"
@@ -13,14 +13,48 @@
           {{ get_cast_detail.name }}
         </div>
 
-        <div class="flex">
-          <div>
-            {{ formatBirth(get_cast_detail.birthday) }}
+        <div>
+          <div class="inline">
+            {{
+              get_cast_detail.birthday
+                ? formatBirth(get_cast_detail.birthday)
+                : "No Birthday Information"
+            }}
+            <div class="inline" v-if="get_cast_detail.deathday">
+              -
+              {{
+                get_cast_detail.deathday
+                  ? formatBirth(get_cast_detail.deathday)
+                  : "No Deathday Information"
+              }}
+            </div>
           </div>
         </div>
         <div class="text-sm mt-5 mr-5">
-          {{ get_cast_detail.biography }}
+          {{
+            get_cast_detail.biography
+              ? get_cast_detail.biography
+              : "No Biography Information"
+          }}
         </div>
+      </div>
+    </div>
+    <div class="ml-3 font-bold">
+      <h1>PHOTOS</h1>
+    </div>
+    <div class="flex flex-wrap">
+      <div
+        class="ml-3 my-5 border border-gray-900 rounded-lg hover:shadow-xl"
+        v-for="(photo, index) in get_person_photos.slice(0, 5)"
+        :key="index"
+      >
+        <a :href="posterUrl + photo.file_path">
+          <img
+            class="img-movie rounded-lg"
+            :src="posterUrl + photo.file_path"
+            alt=""
+          />
+        </a>
       </div>
     </div>
     <div class="ml-3 font-bold">
@@ -29,7 +63,7 @@
     <div class="flex flex-wrap">
       <div
         class="ml-3 my-5 border border-gray-900 rounded-lg hover:shadow-xl"
-        v-for="(movie, index) in get_person_movie_credits.slice(0, 10)"
+        v-for="(movie, index) in get_person_movie_credits.slice(0, 18)"
         :key="index"
       >
         <div class="">
@@ -80,6 +114,7 @@ export default {
         )
         .then((res) => {
           this.$store.state.castDetail = res.data;
+          console.log(res.data);
         });
     },
     setCastMovieCreditsData() {
@@ -91,6 +126,16 @@ export default {
         .then((res) => {
           this.$store.state.personMovieCredits = res.data.cast;
           console.log(res.data.cast);
+        });
+    },
+    setCastPhotos() {
+      this.$store.state.personPhotos = [];
+      axios
+        .get(
+          `https://api.themoviedb.org/3/person/${this.$route.params.id}/images?api_key=66478fb024c9fe12aaaec062298c77a0`
+        )
+        .then((res) => {
+          this.$store.state.personPhotos = res.data.profiles;
         });
     },
     formatBirth(birth) {
@@ -105,9 +150,14 @@ export default {
   created() {
     this.setCastDetailsData();
     this.setCastMovieCreditsData();
+    this.setCastPhotos();
   },
   computed: {
-    ...mapGetters(["get_cast_detail", "get_person_movie_credits"]),
+    ...mapGetters([
+      "get_cast_detail",
+      "get_person_movie_credits",
+      "get_person_photos",
+    ]),
   },
 };
 </script>
