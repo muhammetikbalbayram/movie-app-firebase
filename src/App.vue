@@ -1,7 +1,7 @@
 <template>
   <div class="bg-purple-100">
     <header-component></header-component>
-    <router-view />
+    <router-view class="layout" />
     <footer-component></footer-component>
   </div>
 </template>
@@ -17,4 +17,8 @@ export default {
   },
 };
 </script>
-<style></style>
+<style>
+.layout {
+  min-height: 100vh;
+}
+</style>

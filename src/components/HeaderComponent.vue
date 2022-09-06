@@ -7,21 +7,22 @@
         ><i class="fa-solid fa-clapperboard mr-1.5"></i>AşilBoxD</router-link
       >
     </div>
+
     <div class="mr-24 flex">
-      <div class="flex items-center justify-center mr-3.5">
-        <div class="flex border-2 border-gray-200 rounded bg-black">
+      <div class="mr-3">
+        <div class="flex">
           <input
             type="text"
-            class="px-4 py-2 w-48 h-6"
             placeholder="Search Movies..."
             v-model="search"
             @keyup.enter="searchFilms"
+            class="rounded-l p-0.5 pl-1.5"
           />
           <button
             @click="searchFilms"
-            class="px-4 text-white bg-gray-600 border-l"
+            class="border border-white px-1.5 rounded-r"
           >
-            Search
+            <i class="fa-solid fa-magnifying-glass text-white"></i>
           </button>
         </div>
       </div>
@@ -63,7 +64,7 @@ export default {
       this.$store.state.searchData = [];
       axios
         .get(
-          `https://api.themoviedb.org/3/search/movie?api_key=66478fb024c9fe12aaaec062298c77a0&query=${this.search}`
+          `https://api.themoviedb.org/3/search/movie?api_key=${process.env.VUE_APP_API_KEY}&query=${this.search}`
         )
         .then((res) => (this.$store.state.searchData = res.data.results));
       this.search = "";

@@ -32,7 +32,7 @@ export default {
       this.$store.state.homePageMovies = [];
       axios
         .get(
-          `https://api.themoviedb.org/3/movie/upcoming?api_key=66478fb024c9fe12aaaec062298c77a0`
+          `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.VUE_APP_API_KEY}`
         )
         .then((res) => (this.$store.state.homePageMovies = res.data.results));
     },

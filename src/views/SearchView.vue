@@ -1,16 +1,16 @@
 <template>
   <div>
-    <movie-component :movies="get_search_data"></movie-component>
+    <movie-list-component :movies="get_search_data"></movie-list-component>
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
-import MovieComponent from "@/components/MovieListComponent";
+import MovieListComponent from "@/components/MovieListComponent";
 
 export default {
   name: "SearchView",
-  components: { MovieComponent },
+  components: { MovieListComponent },
   data() {
     return {
       posterUrl: "https://image.tmdb.org/t/p/original",

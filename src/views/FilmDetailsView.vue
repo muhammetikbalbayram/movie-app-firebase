@@ -129,14 +129,16 @@
             <router-link :to="/cast/ + cast.id">
               <div class="mt-1 font-bold hover:text-gray-600">
                 {{
-                  cast.name.length > 14 ? cast.name.substring(0, 15) : cast.name
+                  cast.name.length > 14
+                    ? cast.name.substring(0, 15) + "..."
+                    : cast.name
                 }}
               </div>
             </router-link>
             <div class="text-sm italic">
               {{
                 cast.character.length > 14
-                  ? cast.character.substring(0, 15)
+                  ? cast.character.substring(0, 15) + "..."
                   : cast.character
               }}
             </div>
@@ -207,7 +209,7 @@ export default {
       this.$store.state.movieCastCredits = [];
       axios
         .get(
-          `https://api.themoviedb.org/3/movie/${this.paramsId}?api_key=66478fb024c9fe12aaaec062298c77a0`
+          `https://api.themoviedb.org/3/movie/${this.paramsId}?api_key=${process.env.VUE_APP_API_KEY}`
         )
         .then((res) => (this.$store.state.movieDetails = res.data));
     },
@@ -217,7 +219,7 @@ export default {
       this.$store.state.movieDirectorDetail = [];
       axios
         .get(
-          `https://api.themoviedb.org/3/movie/${this.paramsId}/credits?api_key=66478fb024c9fe12aaaec062298c77a0`
+          `https://api.themoviedb.org/3/movie/${this.paramsId}/credits?api_key=${process.env.VUE_APP_API_KEY}`
         )
         .then((res) => {
           this.$store.state.movieCastCredits = res.data.cast;
@@ -233,7 +235,7 @@ export default {
       this.$store.state.movieImages = [];
       axios
         .get(
-          `https://api.themoviedb.org/3/movie/${this.paramsId}/images?api_key=66478fb024c9fe12aaaec062298c77a0`
+          `https://api.themoviedb.org/3/movie/${this.paramsId}/images?api_key=${process.env.VUE_APP_API_KEY}`
         )
         .then((res) => (this.$store.state.movieImages = res.data.backdrops));
     },
@@ -241,7 +243,7 @@ export default {
       this.$store.state.similarMovies = [];
       axios
         .get(
-          `https://api.themoviedb.org/3/movie/${this.paramsId}/similar?api_key=66478fb024c9fe12aaaec062298c77a0`
+          `https://api.themoviedb.org/3/movie/${this.paramsId}/similar?api_key=${process.env.VUE_APP_API_KEY}`
         )
         .then((res) => (this.$store.state.similarMovies = res.data.results));
     },

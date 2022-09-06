@@ -110,7 +110,7 @@ export default {
       this.$store.state.castDetail = [];
       axios
         .get(
-          `https://api.themoviedb.org/3/person/${this.$route.params.id}?api_key=66478fb024c9fe12aaaec062298c77a0`
+          `https://api.themoviedb.org/3/person/${this.$route.params.id}?api_key=${process.env.VUE_APP_API_KEY}`
         )
         .then((res) => {
           this.$store.state.castDetail = res.data;
@@ -121,7 +121,7 @@ export default {
       this.$store.state.personMovieCredits = [];
       axios
         .get(
-          `https://api.themoviedb.org/3/person/${this.$route.params.id}/movie_credits?api_key=66478fb024c9fe12aaaec062298c77a0`
+          `https://api.themoviedb.org/3/person/${this.$route.params.id}/movie_credits?api_key=${process.env.VUE_APP_API_KEY}`
         )
         .then((res) => {
           this.$store.state.personMovieCredits = res.data.cast;
@@ -132,7 +132,7 @@ export default {
       this.$store.state.personPhotos = [];
       axios
         .get(
-          `https://api.themoviedb.org/3/person/${this.$route.params.id}/images?api_key=66478fb024c9fe12aaaec062298c77a0`
+          `https://api.themoviedb.org/3/person/${this.$route.params.id}/images?api_key=${process.env.VUE_APP_API_KEY}`
         )
         .then((res) => {
           this.$store.state.personPhotos = res.data.profiles;
