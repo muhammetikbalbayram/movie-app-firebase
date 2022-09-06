@@ -19,6 +19,6 @@ export default {
 </script>
 <style>
 .layout {
-  min-height: 100vh;
+  min-height: 80vh;
 }
 </style>

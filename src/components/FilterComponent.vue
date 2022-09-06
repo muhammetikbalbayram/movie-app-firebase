@@ -2,13 +2,12 @@
   <div
     class="row-span-1 border border-gray-900 col-span-1 mt-14 ml-8 rounded rounded-xl shadow shadow-xl"
   >
-    <div
-      v-for="(genre, index) in genres"
-      :key="index"
-      class="text-center active:font-bold"
-    >
+    <div v-for="(genre, index) in genres" :key="index" class="text-center">
       <div>
-        <button @click="setMoviesWithGenres(genre.id)" class="mt-2">
+        <button
+          @click="setMoviesWithGenres(genre.id)"
+          class="mt-2 focus:font-bold"
+        >
           {{ genre.name }}
         </button>
       </div>
