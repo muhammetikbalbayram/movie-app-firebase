@@ -1,5 +1,12 @@
 <template>
-  <div>
+  <div v-if="loading" class="spinner flex justify-center items-center">
+    <dot-loader
+      :loading="loading"
+      :color="loader.color"
+      :size="loader.size"
+    ></dot-loader>
+  </div>
+  <div v-if="!loading">
     <div class="relative my-5">
       <div
         class="main-div bg-cover"
@@ -196,6 +203,11 @@ export default {
       posterUrl: "https://image.tmdb.org/t/p/original",
       isInWatchList: false,
       isWatched: false,
+      loading: false,
+      loader: {
+        color: "#9333ea",
+        size: "35px",
+      },
     };
   },
   watch: {
@@ -248,10 +260,14 @@ export default {
         .then((res) => (this.$store.state.similarMovies = res.data.results));
     },
     getData() {
+      this.loading = true;
       this.setMovieDetailsData();
       this.setCastCreditData();
       this.setMovieImages();
       this.setSimilarMovies();
+      setTimeout(() => {
+        this.loading = false;
+      }, 500);
     },
     toggleWatched() {
       this.isWatched = !this.isWatched;

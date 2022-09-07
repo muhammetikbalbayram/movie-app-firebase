@@ -19,6 +19,9 @@ export default {
 </script>
 <style>
 .layout {
-  min-height: 80vh;
+  min-height: calc(100vh - 176px);
+}
+.spinner {
+  min-height: calc(100vh - 176px);
 }
 </style>

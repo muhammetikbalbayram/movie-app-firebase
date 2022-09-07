@@ -1,5 +1,12 @@
 <template>
-  <div>
+  <div v-if="loading" class="spinner flex justify-center items-center">
+    <dot-loader
+      :loading="loading"
+      :color="loader.color"
+      :size="loader.size"
+    ></dot-loader>
+  </div>
+  <div v-if="!loading">
     <div class="flex bg-purple-300 my-5">
       <div class="m-5">
         <img
@@ -103,6 +110,11 @@ export default {
   data() {
     return {
       posterUrl: "https://image.tmdb.org/t/p/original",
+      loading: false,
+      loader: {
+        color: "#9333ea",
+        size: "35px",
+      },
     };
   },
   methods: {
@@ -138,6 +150,11 @@ export default {
           this.$store.state.personPhotos = res.data.profiles;
         });
     },
+    getData() {
+      this.setCastDetailsData();
+      this.setCastMovieCreditsData();
+      this.setCastPhotos();
+    },
     formatBirth(birth) {
       let birthDate = birth.split("-").reverse();
       return birthDate[0] + "/" + birthDate[1] + "/" + birthDate[2];
@@ -148,9 +165,11 @@ export default {
     },
   },
   created() {
-    this.setCastDetailsData();
-    this.setCastMovieCreditsData();
-    this.setCastPhotos();
+    this.loading = true;
+    this.getData();
+    setTimeout(() => {
+      this.loading = false;
+    }, 500);
   },
   computed: {
     ...mapGetters([

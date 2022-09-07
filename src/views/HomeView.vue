@@ -4,12 +4,13 @@
       <filter-component class="row-span-1"></filter-component>
     </div>
     <div class="col-span-10">
-      <div class="flex justify-center items-center" v-if="loading">
+      <div class="spinner-home flex justify-center items-center" v-if="loading">
         <div>
-          <spinner-component
-            class="spinner"
+          <dot-loader
             :loading="loading"
-          ></spinner-component>
+            :color="loader.color"
+            :size="loader.size"
+          ></dot-loader>
         </div>
       </div>
       <movie-list-component
@@ -23,8 +24,6 @@
 <script>
 import FilterComponent from "@/components/FilterComponent";
 import MovieListComponent from "@/components/MovieListComponent";
-import SpinnerComponent from "@/components/SpinnerComponent";
-
 import axios from "axios";
 import { mapGetters } from "vuex";
 
@@ -33,12 +32,15 @@ export default {
   components: {
     FilterComponent,
     MovieListComponent,
-    SpinnerComponent,
   },
   data() {
     return {
       posterUrl: "https://image.tmdb.org/t/p/original",
       loading: false,
+      loader: {
+        color: "#9333ea",
+        size: "35px",
+      },
     };
   },
   watch: {
@@ -77,7 +79,7 @@ export default {
 };
 </script>
 <style scoped>
-.spinner {
+.spinner-home {
   min-height: 90vh;
 }
 </style>

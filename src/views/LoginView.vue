@@ -18,7 +18,7 @@ export default {
   min-width: 35vw;
 }
 .card {
-  height: 555px;
+  height: 525px;
   width: 460px;
 }
 .photo-item {
