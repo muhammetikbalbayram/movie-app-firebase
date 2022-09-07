@@ -1,10 +1,17 @@
 <template>
   <div class="grid grid-cols-12">
-    <div v-if="!loading" class="grid grid-rows-4 col-span-2">
-      <filter-component class="row-auto"></filter-component>
+    <div class="grid grid-rows-3 col-span-2">
+      <filter-component class="row-span-1"></filter-component>
     </div>
     <div class="col-span-10">
-      <spinner-component :loading="loading"></spinner-component>
+      <div class="flex justify-center items-center" v-if="loading">
+        <div>
+          <spinner-component
+            class="spinner"
+            :loading="loading"
+          ></spinner-component>
+        </div>
+      </div>
       <movie-list-component
         v-if="!loading"
         :movies="get_home_page_movies"
@@ -17,6 +24,7 @@
 import FilterComponent from "@/components/FilterComponent";
 import MovieListComponent from "@/components/MovieListComponent";
 import SpinnerComponent from "@/components/SpinnerComponent";
+
 import axios from "axios";
 import { mapGetters } from "vuex";
 
@@ -33,6 +41,11 @@ export default {
       loading: false,
     };
   },
+  watch: {
+    get_home_page_movies() {
+      this;
+    },
+  },
   methods: {
     get_data() {
       this.$store.state.homePageMovies = [];
@@ -47,7 +60,6 @@ export default {
         })
         .catch((err) => {
           console.log(err);
-          this.loading = true;
         });
     },
   },
@@ -66,6 +78,6 @@ export default {
 </script>
 <style scoped>
 .spinner {
-  width: 100vw;
+  min-height: 90vh;
 }
 </style>

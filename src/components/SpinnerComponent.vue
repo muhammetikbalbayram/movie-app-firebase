@@ -15,7 +15,7 @@ export default {
   data() {
     return {
       color: "#9333ea",
-      size: "50px",
+      size: "35px",
     };
   },
 };

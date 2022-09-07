@@ -14,6 +14,7 @@ export default createStore({
     searchData: [],
     similarMovies: [],
     personPhotos: [],
+    genreMovies: [],
   },
   getters: {
     get_home_page_movies(state) {
@@ -48,6 +49,9 @@ export default createStore({
     },
     get_movie_director_detail(state) {
       return state.movieDirectorDetail;
+    },
+    get_genre_movies(state) {
+      return state.genreMovies;
     },
   },
   mutations: {},
