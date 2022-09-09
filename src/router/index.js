@@ -5,6 +5,7 @@ import LoginView from "@/views/LoginView";
 import FilmDetailsView from "@/views/FilmDetailsView";
 import CastDetail from "@/views/CastDetail";
 import SearchView from "@/views/SearchView";
+import RegisterView from "@/views/RegisterView";
 
 const routes = [
   {
@@ -26,6 +27,11 @@ const routes = [
     path: "/login",
     name: "login",
     component: LoginView,
+  },
+  {
+    path: "/register",
+    name: "register",
+    component: RegisterView,
   },
   {
     path: "/movie/:id",
