@@ -8,12 +8,23 @@
 <script>
 import HeaderComponent from "@/components/HeaderComponent";
 import FooterComponent from "@/components/FooterComponent";
+import { getAuth } from "firebase/auth";
 
 export default {
   name: "App",
   components: {
     HeaderComponent,
     FooterComponent,
+  },
+  computed: {},
+  async created() {
+    const auth = getAuth();
+    auth.onAuthStateChanged((user) => {
+      this.$store.commit("updateUser", user);
+      if (user) {
+        this.$store.dispatch("getCurrentUser");
+      }
+    });
   },
 };
 </script>

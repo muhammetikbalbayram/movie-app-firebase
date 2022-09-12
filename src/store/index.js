@@ -1,5 +1,8 @@
 import { createStore } from "vuex";
 
+import { getDoc, doc, getFirestore } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
+
 export default createStore({
   state: {
     homePageMovies: [],
@@ -15,6 +18,7 @@ export default createStore({
     similarMovies: [],
     personPhotos: [],
     genreMovies: [],
+    user: null,
     profileEmail: null,
     profileName: null,
     profileLastName: null,
@@ -59,7 +63,28 @@ export default createStore({
       return state.genreMovies;
     },
   },
-  mutations: {},
-  actions: {},
+  mutations: {
+    setProfileInfo(state, doc) {
+      state.profileId = doc.id;
+      state.profileEmail = doc.data().mail;
+      state.profileName = doc.data().name;
+      state.profileLastName = doc.data().lastName;
+    },
+    updateUser(state, payload) {
+      state.user = payload;
+    },
+  },
+  actions: {
+    async getCurrentUser({ commit }) {
+      const auth = await getAuth();
+      const db = getFirestore();
+
+      const dbResults = await getDoc(
+        doc(db, "users", `${auth.currentUser.uid}`)
+      );
+
+      commit("setProfileInfo", dbResults);
+    },
+  },
   modules: {},
 });

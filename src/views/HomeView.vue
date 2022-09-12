@@ -43,11 +43,7 @@ export default {
       },
     };
   },
-  watch: {
-    get_home_page_movies() {
-      this;
-    },
-  },
+  watch: {},
   methods: {
     get_data() {
       this.$store.state.homePageMovies = [];
@@ -71,7 +67,7 @@ export default {
       this.get_data();
     }, 250);
 
-    console.log(this.get_home_page_movies);
+    //console.log(this.get_home_page_movies);
   },
   computed: {
     ...mapGetters(["get_home_page_movies"]),
