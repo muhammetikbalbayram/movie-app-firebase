@@ -66,6 +66,8 @@
 
 <script>
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getFirestore, doc, setDoc } from "firebase/firestore";
+
 export default {
   name: "RegisterView",
   data() {
@@ -81,7 +83,7 @@ export default {
     };
   },
   methods: {
-    submitUser() {
+    async submitUser() {
       if (
         this.user.name !== "" &&
         this.user.lastName !== "" &&
@@ -90,12 +92,19 @@ export default {
         this.user.confirmationPassword !== "" &&
         this.user.password === this.user.confirmationPassword
       ) {
-        createUserWithEmailAndPassword(
-          getAuth(),
+        const auth = getAuth();
+        const db = getFirestore();
+        await createUserWithEmailAndPassword(
+          auth,
           this.user.mail,
           this.user.password
         )
-          .then(() => {
+          .then((result) => {
+            setDoc(doc(db, "users", `${result.user.uid}`), {
+              name: this.user.name,
+              lastName: this.user.lastName,
+              mail: this.user.mail,
+            });
             this.user = {
               name: "",
               lastName: "",

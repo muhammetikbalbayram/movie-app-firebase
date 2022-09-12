@@ -15,6 +15,11 @@ export default createStore({
     similarMovies: [],
     personPhotos: [],
     genreMovies: [],
+    profileEmail: null,
+    profileName: null,
+    profileLastName: null,
+    profileUsername: null,
+    profileId: null,
   },
   getters: {
     get_home_page_movies(state) {

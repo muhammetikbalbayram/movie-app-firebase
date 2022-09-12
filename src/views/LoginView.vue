@@ -39,7 +39,6 @@
           <router-link class="font-bold text-purple-700" to="/register"
             >Register</router-link
           >
-          <div>{{ user.mail }} {{ user.password }}</div>
         </div>
       </div>
     </div>
@@ -61,21 +60,20 @@ export default {
     };
   },
   methods: {
-    signIn() {
+    async signIn() {
       if (this.user.mail !== "" && this.user.password !== "") {
-        signInWithEmailAndPassword(
-          getAuth(),
+        let auth = getAuth();
+        await signInWithEmailAndPassword(
+          auth,
           this.user.mail,
           this.user.password
         )
-          .then((userCredit) => {
-            console.log(userCredit);
+          .then(() => {
             this.user = {
               mail: "",
               password: "",
             };
             router.push("/");
-            console.log("succesful");
           })
           .catch((err) => {
             console.log(err);
