@@ -1,9 +1,7 @@
 <template>
-  <div class="grid grid-cols-12">
-    <div class="grid grid-rows-3 col-span-2">
-      <filter-component class="row-span-1"></filter-component>
-    </div>
-    <div class="col-span-10">
+  <div class="flex">
+    <genre-component class="filter-comp"></genre-component>
+    <div class="home-comp">
       <div class="spinner-home flex justify-center items-center" v-if="loading">
         <div>
           <dot-loader
@@ -22,7 +20,7 @@
 </template>
 
 <script>
-import FilterComponent from "@/components/FilterComponent";
+import GenreComponent from "@/components/GenreComponent";
 import MovieListComponent from "@/components/MovieListComponent";
 import axios from "axios";
 import { mapGetters } from "vuex";
@@ -30,7 +28,7 @@ import { mapGetters } from "vuex";
 export default {
   name: "HomeView",
   components: {
-    FilterComponent,
+    GenreComponent,
     MovieListComponent,
   },
   data() {
@@ -77,5 +75,12 @@ export default {
 <style scoped>
 .spinner-home {
   min-height: 90vh;
+}
+.filter-comp {
+  flex: 1;
+  max-height: 616px;
+}
+.home-comp {
+  flex: 6;
 }
 </style>

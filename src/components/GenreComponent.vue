@@ -1,16 +1,19 @@
 <template>
   <div
-    class="row-span-1 border border-gray-900 col-span-1 mt-14 ml-8 rounded rounded-xl shadow shadow-xl"
+    class="border border-gray-900 mt-14 ml-8 rounded rounded-xl shadow shadow-xl flex flex-col items-center w-52"
   >
-    <div v-for="(genre, index) in genres" :key="index" class="text-center">
-      <div>
-        <button
-          @click="setMoviesWithGenres(genre.id)"
-          class="mt-2 focus:font-bold"
-        >
-          {{ genre.name }}
-        </button>
-      </div>
+    <div
+      v-for="(genre, index) in genres"
+      :key="index"
+      class="text-center last:mb-2"
+    >
+      <button
+        @click="setMoviesWithGenres(genre.id)"
+        class="mt-2"
+        :class="isGenreActive(genre.id) ? 'genre-active' : ''"
+      >
+        {{ genre.name }}
+      </button>
     </div>
   </div>
 </template>
@@ -101,11 +104,13 @@ export default {
           name: "Western",
         },
       ],
+      activeGenre: null,
     };
   },
   methods: {
     setMoviesWithGenres(genre) {
       this.$store.state.homePageMovies = [];
+      this.activeGenre = genre;
       axios
         .get(
           `https://api.themoviedb.org/3/discover/movie?api_key=66478fb024c9fe12aaaec062298c77a0&with_genres=${genre}`
@@ -113,8 +118,15 @@ export default {
         .then((res) => (this.$store.state.homePageMovies = res.data.results));
       router.push({ name: "home" });
     },
+    isGenreActive(genre) {
+      return this.activeGenre === genre;
+    },
   },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.genre-active {
+  font-weight: bold;
+}
+</style>
