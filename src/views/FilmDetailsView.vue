@@ -34,44 +34,48 @@
                 formatReleaseYear(get_movie_details.release_date)
               }})
             </div>
-            <button
-              @click="toggleIsInWatchList"
-              v-if="!isInWatchList"
-              class="text center text-white text-sm rounded-full bg-purple-800 hover:bg-white hover:text-purple-500 mr-2 p-1"
-            >
-              Add Watchlist
-              <i
-                class="fa-solid fa-list hover:text-purple-500 cursor-pointer"
-              ></i>
-            </button>
-            <button
-              @click="toggleIsInWatchList"
-              v-show="isInWatchList"
-              class="h-8 w-8 text center text-xl rounded-full bg-purple-800 hover:bg-white mr-0.5"
-            >
-              <i
-                class="fa-solid fa-check text-white hover:text-purple-500 cursor-pointer"
-              ></i>
-            </button>
-            <button
-              @click="toggleWatched"
-              v-show="!isWatched"
-              class="text center text-white text-sm rounded-full bg-purple-800 hover:bg-white hover:text-purple-500 p-2"
-            >
-              Add Watched Movies
-              <i
-                class="fa-solid fa-plus hover:text-purple-500 cursor-pointer"
-              ></i>
-            </button>
-            <button
-              @click="toggleWatched"
-              v-show="isWatched"
-              class="h-8 w-8 text center text-xl rounded-full bg-purple-800 hover:bg-white mr-0.5"
-            >
-              <i
-                class="fa-solid fa-check text-white hover:text-purple-500 cursor-pointer"
-              ></i>
-            </button>
+            <div v-if="get_user">
+              <button
+                @click="toggleIsInWatchList"
+                v-if="!isInWatchList"
+                class="text center text-white text-sm rounded-full bg-purple-800 hover:bg-white hover:text-purple-500 mr-2 p-2"
+              >
+                Add Watchlist
+                <i
+                  class="fa-solid fa-list hover:text-purple-500 cursor-pointer"
+                ></i>
+              </button>
+              <button
+                @click="toggleIsInWatchList"
+                v-show="isInWatchList"
+                class="h-8 w-8 text center text-xl rounded-full bg-purple-800 hover:bg-white mr-0.5"
+              >
+                <i
+                  class="fa-solid fa-check text-white hover:text-purple-500 cursor-pointer"
+                ></i>
+              </button>
+            </div>
+            <div v-if="get_user">
+              <button
+                @click="toggleWatched"
+                v-show="!isWatched"
+                class="text center text-white text-sm rounded-full bg-purple-800 hover:bg-white hover:text-purple-500 p-2"
+              >
+                Add Watched Movies
+                <i
+                  class="fa-solid fa-plus hover:text-purple-500 cursor-pointer"
+                ></i>
+              </button>
+              <button
+                @click="toggleWatched"
+                v-show="isWatched"
+                class="h-8 w-8 text center text-xl rounded-full bg-purple-800 hover:bg-white mr-0.5"
+              >
+                <i
+                  class="fa-solid fa-check text-white hover:text-purple-500 cursor-pointer"
+                ></i>
+              </button>
+            </div>
           </div>
 
           <div>{{ movieRunTime }}</div>
@@ -294,6 +298,7 @@ export default {
       "get_movie_images",
       "get_similar_movies",
       "get_movie_director_detail",
+      "get_user",
     ]),
     movieRunTime() {
       let runTime = this.get_movie_details.runtime;
