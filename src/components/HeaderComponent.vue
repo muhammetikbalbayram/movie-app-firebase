@@ -39,9 +39,19 @@
         <router-link class="mr-3.5 hover:text-gray-400" to="#"
           >WatchList</router-link
         >
-        <router-link class="hover:text-gray-400" :to="{ name: 'login' }"
+        <router-link
+          v-if="!get_user"
+          class="mr-3.5 hover:text-gray-400"
+          :to="{ name: 'login' }"
           >Login</router-link
         >
+        <div
+          @click="signOut"
+          v-if="get_user"
+          class="hover:text-gray-400 cursor-pointer"
+        >
+          Logout
+        </div>
       </div>
     </div>
   </div>
@@ -50,6 +60,8 @@
 <script>
 import axios from "axios";
 import router from "@/router";
+import { mapGetters } from "vuex";
+import { getAuth, signOut } from "firebase/auth";
 
 export default {
   name: "HeaderComponent",
@@ -73,6 +85,20 @@ export default {
     toggleShow() {
       this.showDropdown = !this.showDropdown;
     },
+    signOut() {
+      const auth = getAuth();
+      signOut(auth)
+        .then(() => {
+          console.log("Sign-out successful");
+        })
+        .catch(() => {
+          console.log("An error happened");
+        });
+      router.push("/");
+    },
+  },
+  computed: {
+    ...mapGetters(["get_user"]),
   },
 };
 </script>

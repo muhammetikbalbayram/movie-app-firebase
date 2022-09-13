@@ -1,8 +1,8 @@
 <template>
-  <div class="flex relative">
+  <div class="flex relative register-form">
     <div class="photo-item flex-1 opacity-60"></div>
     <div
-      class="absolute top-2.5 left-2.5 bottom-2.5 bg-white card rounded-xl p-2.5 flex flex-col items-center justify-center"
+      class="absolute left-0 bg-white card flex flex-col items-center justify-center"
     >
       <div>
         <h1 class="font-bold mb-12 text-xl">REGISTER</h1>
@@ -11,31 +11,31 @@
         <div class="flex flex-col items-center justify-center">
           <input
             placeholder="Name.."
-            class="border border-2 rounded-lg border-purple-200 focus:border-purple-700 w-72 h-10 mb-6 p-1.5"
+            class="border border-2 rounded-lg border-purple-200 focus:border-purple-700 w-96 h-10 mb-6 p-1.5"
             type="text"
             v-model="user.name"
           />
           <input
             placeholder="Last Name.."
-            class="border border-2 rounded-lg border-purple-200 w-72 h-10 mb-6 p-1.5"
+            class="border border-2 rounded-lg border-purple-200 w-96 h-10 mb-6 p-1.5"
             type="text"
             v-model="user.lastName"
           />
           <input
             placeholder="Email.."
-            class="border border-2 rounded-lg border-purple-200 w-72 h-10 mb-6 p-1.5"
+            class="border border-2 rounded-lg border-purple-200 w-96 h-10 mb-6 p-1.5"
             type="email"
             v-model="user.mail"
           />
           <input
             placeholder="Password.."
-            class="border border-2 rounded-lg border-purple-200 w-72 h-10 mb-6 p-1.5"
+            class="border border-2 rounded-lg border-purple-200 w-96 h-10 mb-6 p-1.5"
             type="password"
             v-model="user.password"
           />
           <input
             placeholder="Confirm Password.."
-            class="border border-2 rounded-lg border-purple-200 w-72 h-10 p-1.5"
+            class="border border-2 rounded-lg border-purple-200 w-96 h-10 p-1.5"
             :class="[!errorMessageActive ? 'mb-6' : 'mb-0']"
             type="password"
             v-model="user.confirmationPassword"
@@ -47,7 +47,7 @@
           </div>
         </div>
         <button
-          class="w-72 h-10 text-center bg-purple-700 text-white border rounded-lg border-white hover:text-purple-700 hover:bg-white hover:border-purple-700 hover:border-4"
+          class="w-64 h-10 text-center bg-purple-700 text-white border rounded-lg border-white hover:text-purple-700 hover:bg-white hover:border-purple-700 hover:border-4"
           type="submit"
           @click="submitUser"
         >
@@ -67,6 +67,7 @@
 <script>
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { getFirestore, doc, setDoc } from "firebase/firestore";
+import router from "@/router";
 
 export default {
   name: "RegisterView",
@@ -101,9 +102,11 @@ export default {
         )
           .then((result) => {
             setDoc(doc(db, "users", `${result.user.uid}`), {
-              name: this.user.name,
-              lastName: this.user.lastName,
-              mail: this.user.mail,
+              userInfo: {
+                name: this.user.name,
+                lastName: this.user.lastName,
+                mail: this.user.mail,
+              },
             });
             this.user = {
               name: "",
@@ -113,6 +116,7 @@ export default {
               confirmationPassword: "",
             };
             console.log("succesfull");
+            router.push("/");
           })
           .catch((err) => {
             console.log(err);
@@ -126,9 +130,12 @@ export default {
 </script>
 
 <style scoped>
+.register-form {
+  height: 100vh;
+}
 .card {
-  height: 525px;
-  width: 460px;
+  height: 100vh;
+  width: 600px;
 }
 .photo-item {
   background-image: url("@/assets/1589248812_518988.jpg");

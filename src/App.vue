@@ -1,8 +1,8 @@
 <template>
   <div class="bg-purple-100">
-    <header-component></header-component>
+    <header-component v-if="!navigation"></header-component>
     <router-view class="layout" />
-    <footer-component></footer-component>
+    <footer-component v-if="!navigation"></footer-component>
   </div>
 </template>
 <script>
@@ -16,15 +16,40 @@ export default {
     HeaderComponent,
     FooterComponent,
   },
+  data() {
+    return {
+      navigation: false,
+    };
+  },
+  methods: {
+    checkRoute() {
+      if (
+        this.$route.name === "login" ||
+        this.$route.name === "register" ||
+        this.$route.name === "forgot-password"
+      ) {
+        this.navigation = true;
+        return;
+      }
+      this.navigation = false;
+    },
+  },
   computed: {},
   async created() {
     const auth = getAuth();
     auth.onAuthStateChanged((user) => {
       this.$store.commit("updateUser", user);
+      console.log(this.$store.state.user);
       if (user) {
         this.$store.dispatch("getCurrentUser");
       }
     });
+    this.checkRoute();
+  },
+  watch: {
+    $route() {
+      this.checkRoute();
+    },
   },
 };
 </script>

@@ -1,8 +1,8 @@
 <template>
-  <div class="flex relative">
+  <div class="flex relative login-form">
     <div class="photo-item flex-1 opacity-60"></div>
     <div
-      class="absolute top-3.5 left-3.5 bottom-2.5 bg-white card rounded-xl p-2.5 flex flex-col items-center justify-center"
+      class="absolute left-0 bg-white card flex flex-col items-center justify-center"
     >
       <div>
         <h1 class="font-bold mb-12 text-xl">SIGN IN</h1>
@@ -11,13 +11,13 @@
         <div class="flex flex-col items-center justify-center">
           <input
             placeholder="Email.."
-            class="border border-2 rounded-lg border-purple-200 focus:border-purple-700 w-72 h-10 mb-6 p-1.5"
+            class="border border-2 rounded-lg border-purple-200 focus:border-purple-700 w-96 h-10 mb-6 p-1.5"
             type="text"
             v-model="user.mail"
           />
           <input
             placeholder="Password.."
-            class="border border-2 rounded-lg border-purple-200 w-72 h-10 mb-6 p-1.5"
+            class="border border-2 rounded-lg border-purple-200 w-96 h-10 mb-6 p-1.5"
             type="password"
             v-model="user.password"
           />
@@ -28,7 +28,7 @@
           </div>
         </div>
         <button
-          class="w-72 h-10 text-center bg-purple-700 text-white border rounded-lg border-white hover:text-purple-700 hover:bg-white hover:border-purple-700 hover:border-4"
+          class="w-64 h-10 text-center bg-purple-700 text-white border rounded-lg border-white hover:text-purple-700 hover:bg-white hover:border-purple-700 hover:border-4"
           type="submit"
           @click="signIn"
         >
@@ -86,11 +86,11 @@ export default {
 
 <style scoped>
 .login-form {
-  min-width: 35vw;
+  min-height: 100vh;
 }
 .card {
-  height: 525px;
-  width: 460px;
+  height: 100vh;
+  width: 600px;
 }
 .photo-item {
   background-image: url("@/assets/1589248812_518988.jpg");

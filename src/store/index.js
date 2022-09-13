@@ -1,6 +1,6 @@
 import { createStore } from "vuex";
 
-import { getDoc, doc, getFirestore } from "firebase/firestore";
+import { getDoc, doc, getFirestore, updateDoc } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 
 export default createStore({
@@ -62,16 +62,28 @@ export default createStore({
     get_genre_movies(state) {
       return state.genreMovies;
     },
+    get_user(state) {
+      return state.user;
+    },
   },
   mutations: {
     setProfileInfo(state, doc) {
       state.profileId = doc.id;
-      state.profileEmail = doc.data().mail;
-      state.profileName = doc.data().name;
-      state.profileLastName = doc.data().lastName;
+      state.profileEmail = doc.data().userInfo.mail;
+      state.profileName = doc.data().userInfo.name;
+      state.profileLastName = doc.data().userInfo.lastName;
     },
     updateUser(state, payload) {
       state.user = payload;
+    },
+    changeFirstName(state, payload) {
+      state.profileFirstName = payload;
+    },
+    changeLastName(state, payload) {
+      state.profileLastName = payload;
+    },
+    changeUsername(state, payload) {
+      state.profileUsername = payload;
     },
   },
   actions: {
@@ -82,8 +94,15 @@ export default createStore({
       const dbResults = await getDoc(
         doc(db, "users", `${auth.currentUser.uid}`)
       );
-
       commit("setProfileInfo", dbResults);
+    },
+    async updateUserSettings({ state }) {
+      const db = getFirestore();
+      const userUpdate = doc(db, "users", `${state.profileId}`);
+      await updateDoc(userUpdate, {
+        "userInfo.name": state.profileName,
+        "userInfo.lastName": state.profileLastName,
+      });
     },
   },
   modules: {},
