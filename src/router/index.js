@@ -6,6 +6,8 @@ import FilmDetailsView from "@/views/FilmDetailsView";
 import CastDetail from "@/views/CastDetail";
 import SearchView from "@/views/SearchView";
 import RegisterView from "@/views/RegisterView";
+import WatchedFilmsView from "@/views/WatchedFilmsView";
+import WatchListView from "@/views/WatchListView";
 
 const routes = [
   {
@@ -62,6 +64,22 @@ const routes = [
     component: CastDetail,
     meta: {
       title: "Cast",
+    },
+  },
+  {
+    path: "/watched-films",
+    name: "watched-films",
+    component: WatchedFilmsView,
+    meta: {
+      title: "Watched Films",
+    },
+  },
+  {
+    path: "/watch-list",
+    name: "watch-list",
+    component: WatchListView,
+    meta: {
+      title: "Watch List",
     },
   },
 ];

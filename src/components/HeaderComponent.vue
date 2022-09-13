@@ -27,18 +27,18 @@
         </div>
       </div>
       <div class="text-white flex">
-        <router-link
-          class="mr-3.5 flex flex-col z-50 hover:text-gray-400"
-          to="#"
-          @click="toggleShow"
-          >Films
-        </router-link>
-        <router-link class="mr-3.5 hover:text-gray-400" to="#"
-          >Lists</router-link
+        <div
+          class="mr-3.5 flex flex-col z-50 hover:text-gray-400 cursor-pointer"
+          @click="goToWatchedFilms"
         >
-        <router-link class="mr-3.5 hover:text-gray-400" to="#"
-          >WatchList</router-link
+          Films
+        </div>
+        <div
+          class="mr-3.5 hover:text-gray-400 cursor-pointer"
+          @click="goToWatchList"
         >
+          WatchList
+        </div>
         <router-link
           v-if="!get_user"
           class="mr-3.5 hover:text-gray-400"
@@ -81,6 +81,20 @@ export default {
         .then((res) => (this.$store.state.searchData = res.data.results));
       this.search = "";
       router.push({ name: "search" });
+    },
+    goToWatchedFilms() {
+      if (this.get_user) {
+        router.push({ name: "watched-films" });
+      } else {
+        router.push({ name: "login" });
+      }
+    },
+    goToWatchList() {
+      if (this.get_user) {
+        router.push({ name: "watch-list" });
+      } else {
+        router.push({ name: "login" });
+      }
     },
     toggleShow() {
       this.showDropdown = !this.showDropdown;
