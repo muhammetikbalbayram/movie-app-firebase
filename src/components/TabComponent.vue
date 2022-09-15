@@ -1,7 +1,7 @@
 <template>
   <div>
     <ul
-      class="mt-5 flex justify-center border-2 rounded-lg border-gray-900 p-2"
+      class="mt-5 flex justify-center border-2 rounded-lg border-gray-900 p-2 sm:flex-wrap"
     >
       <li
         @click="showTab(tab, index)"
@@ -34,6 +34,16 @@ export default {
     showTab(tab, index) {
       this.$store.state.activeTab = tab;
       this.activeTab = index;
+    },
+  },
+  computed: {
+    activeTabIndex() {
+      return this.$store.state.activeTab;
+    },
+  },
+  watch: {
+    activeTabIndex(newValaue) {
+      this.activeTab = this.tabs.indexOf(newValaue);
     },
   },
 };
