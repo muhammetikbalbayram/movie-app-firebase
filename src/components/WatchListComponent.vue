@@ -1,10 +1,10 @@
 <template>
-  <div>abc</div>
+  <div>WatchList</div>
 </template>
 
 <script>
 export default {
-  name: "WatchedFilmsView",
+  name: "WatchListComponent",
 };
 </script>
 

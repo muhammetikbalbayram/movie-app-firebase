@@ -36,7 +36,7 @@ export default {
       posterUrl: "https://image.tmdb.org/t/p/original",
       loading: false,
       loader: {
-        color: "#9333ea",
+        color: "#395b64",
         size: "35px",
       },
     };

@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="text-center bg-gradient-to-b from-purple-600 to-purple-900 flex justify-between h-20 items-center"
-  >
+  <div class="text-center flex justify-between h-20 items-center header">
     <div class="text-white hover:text-gray-400 ml-24">
       <router-link :to="{ name: 'home' }" class="ml-5"
         ><i class="fa-solid fa-clapperboard mr-1.5"></i>AşilBoxD</router-link
@@ -27,7 +25,7 @@
         </div>
       </div>
       <div class="text-white flex">
-        <div
+        <!--        <div
           class="mr-3.5 flex flex-col z-50 hover:text-gray-400 cursor-pointer"
           @click="goToWatchedFilms"
         >
@@ -38,13 +36,20 @@
           @click="goToWatchList"
         >
           WatchList
-        </div>
+        </div>-->
         <router-link
           v-if="!get_user"
           class="mr-3.5 hover:text-gray-400"
           :to="{ name: 'login' }"
           >Login</router-link
         >
+        <router-link
+          v-if="get_user"
+          :to="{ name: 'profile' }"
+          class="mr-3.5 hover:text-gray-400"
+        >
+          {{ profileName }}
+        </router-link>
         <div
           @click="signOut"
           v-if="get_user"
@@ -113,8 +118,17 @@ export default {
   },
   computed: {
     ...mapGetters(["get_user"]),
+    profileName: {
+      get() {
+        return this.$store.state.profileName;
+      },
+    },
   },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.header {
+  background-color: #395b64;
+}
+</style>

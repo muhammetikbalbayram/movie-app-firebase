@@ -11,24 +11,24 @@
         <div class="flex flex-col items-center justify-center">
           <input
             placeholder="Email.."
-            class="border border-2 rounded-lg border-purple-200 focus:border-purple-700 w-96 h-10 mb-6 p-1.5"
+            class="border border-2 rounded-lg w-96 h-10 mb-6 p-1.5"
             type="text"
             v-model="user.mail"
           />
           <input
             placeholder="Password.."
-            class="border border-2 rounded-lg border-purple-200 w-96 h-10 mb-6 p-1.5"
+            class="border border-2 rounded-lg w-96 h-10 mb-6 p-1.5"
             type="password"
             v-model="user.password"
           />
         </div>
         <div>
-          <div class="font-bold text-purple-700">
+          <div class="font-bold forgot-item">
             <router-link to="#">Forgot Password?</router-link>
           </div>
         </div>
         <button
-          class="w-64 h-10 text-center bg-purple-700 text-white border rounded-lg border-white hover:text-purple-700 hover:bg-white hover:border-purple-700 hover:border-4"
+          class="w-64 h-10 text-center border rounded-lg hover:border-4"
           type="submit"
           @click="signIn"
         >
@@ -36,7 +36,7 @@
         </button>
         <div class="mt-3 flex flex-col items-center">
           <p>Don't have an account?</p>
-          <router-link class="font-bold text-purple-700" to="/register"
+          <router-link class="font-bold register-item" to="/register"
             >Register</router-link
           >
         </div>
@@ -50,6 +50,7 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import router from "@/router";
 export default {
   name: "LoginView",
+  components: {},
   data() {
     return {
       user: {
@@ -94,5 +95,24 @@ export default {
 }
 .photo-item {
   background-image: url("@/assets/1589248812_518988.jpg");
+}
+input {
+  border-color: #74959a;
+}
+.forgot-item {
+  color: black;
+}
+.register-item {
+  color: black;
+}
+button {
+  background-color: #74959a;
+  color: white;
+  border-color: white;
+}
+button:hover {
+  background-color: white;
+  color: #74959a;
+  border-color: #74959a;
 }
 </style>

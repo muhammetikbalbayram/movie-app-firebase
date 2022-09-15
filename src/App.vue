@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-purple-100">
+  <div class="app-bg-color">
     <header-component v-if="!navigation"></header-component>
     <router-view class="layout" />
     <footer-component v-if="!navigation"></footer-component>
@@ -56,6 +56,9 @@ export default {
 <style>
 .layout {
   min-height: calc(100vh - 176px);
+}
+.app-bg-color {
+  background-color: #e7f6f2;
 }
 .spinner {
   min-height: calc(100vh - 176px);

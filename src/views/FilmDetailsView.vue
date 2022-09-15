@@ -209,7 +209,7 @@ export default {
       isWatched: false,
       loading: false,
       loader: {
-        color: "#9333ea",
+        color: "#395b64",
         size: "35px",
       },
     };

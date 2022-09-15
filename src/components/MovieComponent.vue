@@ -10,38 +10,30 @@
         <button
           @click="toggleIsInWatchList"
           v-if="!isInWatchList"
-          class="h-8 w-8 text center text-xl rounded-full bg-purple-800 hover:bg-white mr-0.5"
+          class="h-8 w-8 text center text-xl rounded-full mr-0.5"
         >
-          <i
-            class="fa-solid fa-list text-white hover:text-purple-500 cursor-pointer"
-          ></i>
+          <i class="fa-solid fa-list cursor-pointer"></i>
         </button>
         <button
           v-if="isInWatchList"
-          class="h-8 w-8 text center text-xl rounded-full bg-purple-800 hover:bg-white mr-0.5"
+          class="h-8 w-8 text center text-xl rounded-full mr-0.5"
         >
-          <i
-            class="fa-solid fa-check text-white hover:text-purple-500 cursor-pointer"
-          ></i>
+          <i class="fa-solid fa-check cursor-pointer"></i>
         </button>
       </div>
       <div v-if="get_user">
         <button
           @click="toggleWatched"
           v-if="!isWatched"
-          class="h-8 w-8 text center text-xl rounded-full bg-purple-800 hover:bg-white"
+          class="h-8 w-8 text center text-xl rounded-full"
         >
-          <i
-            class="fa-solid fa-plus text-white hover:text-purple-500 cursor-pointer"
-          ></i>
+          <i class="fa-solid fa-plus cursor-pointer"></i>
         </button>
         <button
           v-if="isWatched"
-          class="h-8 w-8 text center text-xl rounded-full bg-purple-800 hover:bg-white mr-0.5"
+          class="h-8 w-8 text center text-xl rounded-full mr-0.5"
         >
-          <i
-            class="fa-solid fa-check text-white hover:text-purple-500 cursor-pointer"
-          ></i>
+          <i class="fa-solid fa-check cursor-pointer"></i>
         </button>
       </div>
     </div>
@@ -87,4 +79,14 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+button {
+  background-color: #395b64;
+  color: #e7f6f2;
+}
+
+button:hover {
+  background-color: white;
+  color: #395b64;
+}
+</style>

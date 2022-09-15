@@ -24,6 +24,7 @@ export default createStore({
     profileLastName: null,
     profileUsername: null,
     profileId: null,
+    activeTab: null,
   },
   getters: {
     get_home_page_movies(state) {

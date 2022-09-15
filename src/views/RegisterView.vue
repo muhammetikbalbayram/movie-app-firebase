@@ -11,43 +11,43 @@
         <div class="flex flex-col items-center justify-center">
           <input
             placeholder="Name.."
-            class="border border-2 rounded-lg border-purple-200 focus:border-purple-700 w-96 h-10 mb-6 p-1.5"
+            class="border border-2 rounded-lg w-96 h-10 mb-6 p-1.5"
             type="text"
             v-model="user.name"
           />
           <input
             placeholder="Last Name.."
-            class="border border-2 rounded-lg border-purple-200 w-96 h-10 mb-6 p-1.5"
+            class="border border-2 rounded-lg w-96 h-10 mb-6 p-1.5"
             type="text"
             v-model="user.lastName"
           />
           <input
             placeholder="Email.."
-            class="border border-2 rounded-lg border-purple-200 w-96 h-10 mb-6 p-1.5"
+            class="border border-2 rounded-lg w-96 h-10 mb-6 p-1.5"
             type="email"
             v-model="user.mail"
           />
           <input
             placeholder="Password.."
-            class="border border-2 rounded-lg border-purple-200 w-96 h-10 mb-6 p-1.5"
+            class="border border-2 rounded-lg w-96 h-10 mb-6 p-1.5"
             type="password"
             v-model="user.password"
           />
           <input
             placeholder="Confirm Password.."
-            class="border border-2 rounded-lg border-purple-200 w-96 h-10 p-1.5"
+            class="border border-2 rounded-lg w-96 h-10 p-1.5"
             :class="[!errorMessageActive ? 'mb-6' : 'mb-0']"
             type="password"
             v-model="user.confirmationPassword"
           />
-          <div class="flex content-end">
+          <div class="flex justify-end">
             <p class="text-sm text-red-900 mt-1 mb-2" v-if="errorMessageActive">
               Please check your information
             </p>
           </div>
         </div>
         <button
-          class="w-64 h-10 text-center bg-purple-700 text-white border rounded-lg border-white hover:text-purple-700 hover:bg-white hover:border-purple-700 hover:border-4"
+          class="w-64 h-10 text-center border rounded-lg hover:border-4"
           type="submit"
           @click="submitUser"
         >
@@ -55,7 +55,7 @@
         </button>
         <div class="mt-3 flex flex-col items-center">
           <p>Already have an account?</p>
-          <router-link class="font-bold text-purple-700 underline" to="/login"
+          <router-link class="font-bold underline sign-item" to="/login"
             >Sign In</router-link
           >
         </div>
@@ -139,5 +139,21 @@ export default {
 }
 .photo-item {
   background-image: url("@/assets/1589248812_518988.jpg");
+}
+sign-item {
+  color: black;
+}
+button {
+  background-color: #74959a;
+  color: white;
+  border-color: white;
+}
+button:hover {
+  background-color: white;
+  color: #74959a;
+  border-color: #74959a;
+}
+input {
+  border-color: #74959a;
 }
 </style>

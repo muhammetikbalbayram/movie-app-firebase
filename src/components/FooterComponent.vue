@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bottom-0 left-0 w-full text-center text-white h-24 bg-gradient-to-t from-purple-600 to-purple-900 flex justify-between items-center"
+    class="bottom-0 left-0 w-full text-center text-white h-24 flex justify-between items-center footer"
   >
     <div>
       <router-link class="ml-5" :to="{ name: 'home' }"
@@ -22,4 +22,8 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.footer {
+  background-color: #395b64;
+}
+</style>

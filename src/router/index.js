@@ -6,8 +6,7 @@ import FilmDetailsView from "@/views/FilmDetailsView";
 import CastDetail from "@/views/CastDetail";
 import SearchView from "@/views/SearchView";
 import RegisterView from "@/views/RegisterView";
-import WatchedFilmsView from "@/views/WatchedFilmsView";
-import WatchListView from "@/views/WatchListView";
+import ProfileView from "@/views/ProfileView";
 
 const routes = [
   {
@@ -67,19 +66,11 @@ const routes = [
     },
   },
   {
-    path: "/watched-films",
-    name: "watched-films",
-    component: WatchedFilmsView,
+    path: "/profile",
+    name: "profile",
+    component: ProfileView,
     meta: {
-      title: "Watched Films",
-    },
-  },
-  {
-    path: "/watch-list",
-    name: "watch-list",
-    component: WatchListView,
-    meta: {
-      title: "Watch List",
+      title: "Profile",
     },
   },
 ];

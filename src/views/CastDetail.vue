@@ -7,7 +7,7 @@
     ></dot-loader>
   </div>
   <div v-if="!loading">
-    <div class="flex bg-purple-300 my-5">
+    <div class="flex my-5 cast-color">
       <div class="m-5">
         <img
           class="img rounded-md"
@@ -112,7 +112,7 @@ export default {
       posterUrl: "https://image.tmdb.org/t/p/original",
       loading: false,
       loader: {
-        color: "#9333ea",
+        color: "#395b64",
         size: "35px",
       },
     };
@@ -193,5 +193,8 @@ export default {
 }
 .title {
   max-width: 138 px;
+}
+.cast-color {
+  background-color: #a5c9ca;
 }
 </style>
